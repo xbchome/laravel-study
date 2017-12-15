@@ -32,4 +32,16 @@ class UsersController extends Controller
         Auth::login($user);
         return redirect()->route('users.show',[$user]);
     }
+
+    public function edit(User $user)
+    {
+        return view('users.edit',compact('user'));
+    }
+
+    public function update(Request $request,User $user)
+    {
+        $this->validate($request,[
+            'name'  => 'required|max:50',
+        ]);
+    }
 }
